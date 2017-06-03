@@ -1,0 +1,221 @@
+{
+  "Category": {
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "localized": false,
+        "required": true,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "shortDescription",
+        "name": "Short description",
+        "type": "Text",
+        "localized": false,
+        "required": false,
+        "disabled": true,
+        "omitted": false
+      },
+      {
+        "id": "icon",
+        "name": "Icon",
+        "type": "Link",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "linkType": "Asset"
+      }
+    ],
+    "relations": {}
+  },
+  "Author": {
+    "fields": [
+      {
+        "id": "name",
+        "name": "Name",
+        "type": "Symbol",
+        "localized": false,
+        "required": true,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "website",
+        "name": "Website",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "profilePhoto",
+        "name": "Profile Photo",
+        "type": "Link",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "linkType": "Asset"
+      },
+      {
+        "id": "biography",
+        "name": "Biography",
+        "type": "Text",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "createdEntries",
+        "name": "Created Entries",
+        "type": "Array",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "validations": [
+            {
+              "linkContentType": [
+                "2wKn6yEnZewu2SCCkus4as"
+              ]
+            }
+          ],
+          "linkType": "Entry"
+        }
+      }
+    ],
+    "relations": {
+      "createdEntries": [
+        "Post"
+      ]
+    }
+  },
+  "Post": {
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Text",
+        "localized": false,
+        "required": true,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "slug",
+        "name": "Slug",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "author",
+        "name": "Author",
+        "type": "Array",
+        "localized": false,
+        "required": true,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "validations": [
+            {
+              "linkContentType": [
+                "1kUEViTN4EmGiEaaeC6ouY"
+              ]
+            }
+          ],
+          "linkType": "Entry"
+        }
+      },
+      {
+        "id": "body",
+        "name": "Body",
+        "type": "Text",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "category",
+        "name": "Category",
+        "type": "Array",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "validations": [
+            {
+              "linkContentType": [
+                "5KMiN6YPvi42icqAUQMCQe"
+              ]
+            }
+          ],
+          "linkType": "Entry"
+        }
+      },
+      {
+        "id": "tags",
+        "name": "Tags",
+        "type": "Array",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Symbol",
+          "validations": []
+        }
+      },
+      {
+        "id": "featuredImage",
+        "name": "Featured image",
+        "type": "Link",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "linkType": "Asset"
+      },
+      {
+        "id": "date",
+        "name": "Date",
+        "type": "Date",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "comments",
+        "name": "Comments",
+        "type": "Boolean",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      }
+    ],
+    "relations": {
+      "author": [
+        "Author"
+      ],
+      "category": [
+        "Category"
+      ]
+    }
+  }
+}

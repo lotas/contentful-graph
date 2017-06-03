@@ -1,0 +1,249 @@
+{
+  "Brand": {
+    "fields": [
+      {
+        "id": "companyName",
+        "name": "Company name",
+        "type": "Text",
+        "localized": false,
+        "required": true,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "logo",
+        "name": "Logo",
+        "type": "Link",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "linkType": "Asset"
+      },
+      {
+        "id": "companyDescription",
+        "name": "Description",
+        "type": "Text",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "website",
+        "name": "Website",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "twitter",
+        "name": "Twitter",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "email",
+        "name": "Email",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "phone",
+        "name": "Phone #",
+        "type": "Array",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Symbol",
+          "validations": []
+        }
+      }
+    ],
+    "relations": {}
+  },
+  "Category": {
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Text",
+        "localized": false,
+        "required": true,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "icon",
+        "name": "Icon",
+        "type": "Link",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "linkType": "Asset"
+      },
+      {
+        "id": "categoryDescription",
+        "name": "Description",
+        "type": "Text",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      }
+    ],
+    "relations": {}
+  },
+  "Product": {
+    "fields": [
+      {
+        "id": "productName",
+        "name": "Product name",
+        "type": "Text",
+        "localized": false,
+        "required": true,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "slug",
+        "name": "Slug",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "productDescription",
+        "name": "Description",
+        "type": "Text",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "sizetypecolor",
+        "name": "Size/Type/Color",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "image",
+        "name": "Image",
+        "type": "Array",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "validations": [],
+          "linkType": "Asset"
+        }
+      },
+      {
+        "id": "tags",
+        "name": "Tags",
+        "type": "Array",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Symbol",
+          "validations": []
+        }
+      },
+      {
+        "id": "categories",
+        "name": "Categories",
+        "type": "Array",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "validations": [
+            {
+              "linkContentType": [
+                "6XwpTaSiiI2Ak2Ww0oi6qa"
+              ]
+            }
+          ],
+          "linkType": "Entry"
+        }
+      },
+      {
+        "id": "price",
+        "name": "Price",
+        "type": "Number",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "brand",
+        "name": "Brand",
+        "type": "Link",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "linkType": "Entry"
+      },
+      {
+        "id": "quantity",
+        "name": "Quantity",
+        "type": "Integer",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "sku",
+        "name": "SKU",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "website",
+        "name": "Available at",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      }
+    ],
+    "relations": {
+      "image": [
+        "Asset"
+      ],
+      "categories": [
+        "Category"
+      ]
+    }
+  }
+}

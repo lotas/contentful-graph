@@ -1,0 +1,217 @@
+{
+  "Photo Gallery": {
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Text",
+        "localized": false,
+        "required": true,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "slug",
+        "name": "Slug",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "author",
+        "name": "Author",
+        "type": "Link",
+        "localized": false,
+        "required": true,
+        "disabled": false,
+        "omitted": false,
+        "linkType": "Entry"
+      },
+      {
+        "id": "coverImage",
+        "name": "Cover Image",
+        "type": "Link",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "linkType": "Asset"
+      },
+      {
+        "id": "description",
+        "name": "Description",
+        "type": "Text",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "images",
+        "name": "Images",
+        "type": "Array",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "validations": [
+            {
+              "linkContentType": [
+                "1xYw5JsIecuGE68mmGMg20"
+              ]
+            }
+          ],
+          "linkType": "Entry"
+        }
+      },
+      {
+        "id": "tags",
+        "name": "Tags",
+        "type": "Array",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Symbol",
+          "validations": []
+        }
+      },
+      {
+        "id": "date",
+        "name": "Date",
+        "type": "Date",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "location",
+        "name": "Location",
+        "type": "Location",
+        "localized": false,
+        "required": false,
+        "disabled": true,
+        "omitted": false
+      }
+    ],
+    "relations": {
+      "images": [
+        "Image"
+      ]
+    }
+  },
+  "Image": {
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "localized": false,
+        "required": true,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "photo",
+        "name": "Photo",
+        "type": "Link",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "linkType": "Asset"
+      },
+      {
+        "id": "imageCaption",
+        "name": "Image caption",
+        "type": "Text",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "imageCredits",
+        "name": "Image credits",
+        "type": "Text",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      }
+    ],
+    "relations": {}
+  },
+  "Author": {
+    "fields": [
+      {
+        "id": "name",
+        "name": "Name",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "twitterHandle",
+        "name": "Twitter handle",
+        "type": "Symbol",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "profilePhoto",
+        "name": "Profile photo",
+        "type": "Link",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "linkType": "Asset"
+      },
+      {
+        "id": "biography",
+        "name": "Biography",
+        "type": "Text",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "createdEntries",
+        "name": "Created entries",
+        "type": "Array",
+        "localized": false,
+        "required": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "validations": [
+            {
+              "linkContentType": [
+                "1xYw5JsIecuGE68mmGMg20"
+              ]
+            }
+          ],
+          "linkType": "Entry"
+        }
+      }
+    ],
+    "relations": {
+      "createdEntries": [
+        "Image"
+      ]
+    }
+  }
+}

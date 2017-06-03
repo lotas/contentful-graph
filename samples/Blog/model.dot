@@ -1,0 +1,14 @@
+
+digraph obj {
+  node[shape=record];
+  rankdir="BT";
+
+  Category [label="<title> Title|<shortDescription> Short description|<icon> Icon"];
+  Author [label="<name> Name|<website> Website|<profilePhoto> Profile Photo|<biography> Biography|<createdEntries> Created Entries"];
+  Post [label="<title> Title|<slug> Slug|<author> Author|<body> Body|<category> Category|<tags> Tags|<featuredImage> Featured image|<date> Date|<comments> Comments"];
+
+  Author -> Post;
+  Post -> Author;
+  Post -> Category;
+}
+

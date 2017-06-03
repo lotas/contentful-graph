@@ -1,0 +1,13 @@
+
+digraph obj {
+  node[shape=record];
+
+  Brand [label="{Brand | +++++++++++ | <companyName> Company name|<logo> Logo|<companyDescription> Description|<website> Website|<twitter> Twitter|<email> Email|<phone> Phone #}" shape=Mrecord];
+  Category [label="{Category | +++++++++++ | <title> Title|<icon> Icon|<categoryDescription> Description}" shape=Mrecord];
+  Product [label="{Product | +++++++++++ | <productName> Product name|<slug> Slug|<productDescription> Description|<sizetypecolor> Size/Type/Color|<image> Image|<tags> Tags|<categories> Categories|<price> Price|<brand> Brand|<quantity> Quantity|<sku> SKU|<website> Available at}" shape=Mrecord];
+  Asset
+
+  Product:image -> Asset [dir="forward"];
+  Product:categories -> Category [dir="forward"];
+}
+
