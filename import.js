@@ -3,16 +3,48 @@
 require('dotenv').config();
 
 const contentful = require('contentful');
+const contentfulManagement = require('contentful-management');
 const getRelations = require('./src/get-relations');
+const modelsToDot = require('./src/models-to-dot');
 
-const apiToken = process.env.CONTENTFUL_TOKEN;
 const spaceId = process.env.CONTENTFUL_SPACE_ID;
+const apiToken = process.env.CONTENTFUL_TOKEN;
+const managementToken = process.env.CONTENTFUL_MANAGEMENT_TOKEN;
 
-const client = contentful.createClient({ accessToken: apiToken, space: spaceId });
+if (managementToken) {
+  runManagementImport();
+} else if (apiToken) {
+  runDistributionImport();
+} else {
+  console.log(`
+Usage:
+Running with distribution token:
+  CONTENTFUL_TOKEN=xxx CONTENTFUL_SPACE_ID=yyy ./import.js
 
-async function main () {
+Running with management token:
+  CONTENTFUL_MANAGEMENT_TOKEN=xxx CONTENTFUL_SPACE_ID=yyy ./import.js
+`)
+}
+
+async function runDistributionImport () {
+  const client = contentful.createClient({ accessToken: apiToken, space: spaceId });
   const types = await client.getContentTypes();
 
+  const modelsMap = typesToModelMap(types);
+  console.log(modelsToDot(modelsMap, true));
+}
+
+async function runManagementImport () {
+  const client = contentfulManagement.createClient({ accessToken: managementToken });
+
+  const space = await client.getSpace(spaceId);
+  const types = await space.getContentTypes();
+
+  const modelsMap = typesToModelMap(types);
+  console.log(modelsToDot(modelsMap, true));
+}
+
+function typesToModelMap(types) {
   const modelsMap = {};
 
   types.items.forEach(type => {
@@ -24,7 +56,5 @@ async function main () {
 
   });
 
-  console.log(JSON.stringify(modelsMap, null, 2));
+  return modelsMap;
 }
-
-main();

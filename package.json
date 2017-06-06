@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "contentful": "^4.3.0",
+    "contentful-management": "^3.7.1",
     "dotenv": "^4.0.0"
   }
 }

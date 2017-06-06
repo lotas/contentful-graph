@@ -4,29 +4,35 @@ function modelsToDot(models, showEntityFields = false) {
   const objects = {};
   const connections = [];
 
+  const mapRelations = (displayName, src, props) => {
+    Object.keys(src).forEach(srcField => {
+      src[srcField].forEach(relatedEntity => {
+        connections.push(`${displayName}:${srcField} -> ${relatedEntity} [${props.join(',')}];`);
+      });
+    });
+  };
+
   Object.keys(models).forEach(modelName => {
     const model = models[modelName];
-
     const displayName = modelName.replace(/\W/g, '');
+
     const fields = model.fields.map(
       field => `<${field.id}> ${field.name}`
     );
+
     if (showEntityFields) {
-      objects[displayName] = `${displayName} [label="{${modelName} | +++++++++++ | ${fields.join('|')}}" shape=Mrecord];`;
+      objects[displayName] = `${displayName} [label="{${modelName} |          | ${fields.join('|')}}" shape=Mrecord];`;
     } else {
       objects[displayName] = `${displayName};`;
     }
 
-    Object.keys(model.relations).forEach(srcField => {
-      const rels = model.relations[srcField];
+    const rels = model.relations;
+    if (rels._hasAssets) {
+      objects[LINK_TYPE_ASSET] = LINK_TYPE_ASSET;
+    }
 
-      rels.forEach(relatedEntity => {
-        if (relatedEntity === LINK_TYPE_ASSET) {
-          objects[LINK_TYPE_ASSET] = LINK_TYPE_ASSET;
-        }
-        connections.push(`${displayName}:${srcField} -> ${relatedEntity} [dir="forward"];`);
-      });
-    });
+    mapRelations(displayName, rels.one, ['dir=forward']);
+    mapRelations(displayName, rels.many, ['dir=forward', 'label="0..*"']);
   });
 
   const dot = `
