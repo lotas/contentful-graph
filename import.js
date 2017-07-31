@@ -2,45 +2,41 @@
 
 require('dotenv').config();
 
-const contentful = require('contentful');
-const contentfulManagement = require('contentful-management');
-
-const typesToModelMap = require('./src/types-to-model-map');
-const modelsToDot = require('./src/models-to-dot');
+const convertApi = require('./src/index')
 
 const spaceId = process.env.CONTENTFUL_SPACE_ID;
 const apiToken = process.env.CONTENTFUL_TOKEN;
 const managementToken = process.env.CONTENTFUL_MANAGEMENT_TOKEN;
 
-if (managementToken) {
-  runManagementImport();
-} else if (apiToken) {
-  runDistributionImport();
-} else {
-  console.log(`
+const usageHelp = `
 Usage:
 Running with distribution token:
   CONTENTFUL_TOKEN=xxx CONTENTFUL_SPACE_ID=yyy ./import.js
 
 Running with management token:
   CONTENTFUL_MANAGEMENT_TOKEN=xxx CONTENTFUL_SPACE_ID=yyy ./import.js
-`)
+`;
+
+try {
+  run(spaceId, managementToken, apiToken);
+} catch (err) {
+  console.warn(err);
 }
 
-async function runDistributionImport () {
-  const client = contentful.createClient({ accessToken: apiToken, space: spaceId });
-  const types = await client.getContentTypes();
+async function run(spaceId, managementToken, apiToken) {
+  let contentTypes;
 
-  const modelsMap = typesToModelMap(types);
-  console.log(modelsToDot(modelsMap, true));
-}
+  if (managementToken) {
+    contentTypes = await convertApi.getContentTypesFromManagementApi(spaceId, managementToken);
+  } else if (apiToken) {
+    contentTypes = await convertApi.getContentTypesFromDistributionApi(spaceId, apiToken);
+  } else {
+    console.log(usageHelp);
+    return false;
+  }
 
-async function runManagementImport () {
-  const client = contentfulManagement.createClient({ accessToken: managementToken });
+  const modelsMap = convertApi.contentTypesToModelMap(contentTypes);
+  const dotStr = convertApi.modelsMapToDot(modelsMap, true);
 
-  const space = await client.getSpace(spaceId);
-  const types = await space.getContentTypes();
-
-  const modelsMap = typesToModelMap(types);
-  console.log(modelsToDot(modelsMap, true));
+  console.log(dotStr);
 }

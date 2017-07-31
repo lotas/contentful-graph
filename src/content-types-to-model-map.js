@@ -8,7 +8,7 @@ const getRelations = require('./get-relations');
  * @param {any} types
  * @returns
  */
-function typesToModelMap(types) {
+function contentTypesToModelMap(types) {
   const modelsMap = {};
 
   types.items.forEach(type => {
@@ -23,4 +23,4 @@ function typesToModelMap(types) {
   return modelsMap;
 }
 
-module.exports = typesToModelMap;
+module.exports = contentTypesToModelMap;

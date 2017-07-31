@@ -1,13 +1,14 @@
 const {TYPE_LINK, LINK_TYPE_ASSET, LINK_TYPE_ENTRY} = require('./constants');
 
-function modelsToDot(models, showEntityFields = false) {
+function modelsMapToDot(models, showEntityFields = false) {
   const objects = {};
   const connections = [];
 
   const mapRelations = (displayName, src, props) => {
     Object.keys(src).forEach(srcField => {
       src[srcField].forEach(relatedEntity => {
-        connections.push(`${displayName}:${srcField} -> ${relatedEntity} [${props.join(',')}];`);
+        const portPart = showEntityFields ? `:${srcField}` : '';
+        connections.push(`${displayName}${portPart} -> ${relatedEntity} [${props.join(',')}];`);
       });
     });
   };
@@ -28,7 +29,7 @@ function modelsToDot(models, showEntityFields = false) {
 
     const rels = model.relations;
     if (rels._hasAssets) {
-      objects[LINK_TYPE_ASSET] = LINK_TYPE_ASSET;
+      objects[LINK_TYPE_ASSET] = `${LINK_TYPE_ASSET};`;
     }
 
     mapRelations(displayName, rels.one, ['dir=forward']);
@@ -48,4 +49,4 @@ digraph obj {
   return dot;
 }
 
-module.exports = modelsToDot;
+module.exports = modelsMapToDot;

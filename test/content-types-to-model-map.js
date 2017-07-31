@@ -2,7 +2,7 @@ const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 
-const typesToModelMap = require('../src/types-to-model-map');
+const convertApi = require('../src/index');
 
 describe('typesToModelMap', function () {
   it('should build empty relations', function () {
@@ -10,6 +10,6 @@ describe('typesToModelMap', function () {
       items: []
     };
 
-    assert.deepEqual(typesToModelMap(emptyTypes), {}, 'Model not empty');
+    assert.deepEqual(convertApi.contentTypesToModelMap(emptyTypes), {}, 'Model not empty');
   });
 });
