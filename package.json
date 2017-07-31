@@ -4,7 +4,7 @@
   "description": "",
   "main": "import.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Yaraslau Kurmyza <lotask@gmail.com>",
   "license": "ISC",
@@ -12,5 +12,8 @@
     "contentful": "^4.3.0",
     "contentful-management": "^3.7.1",
     "dotenv": "^4.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2"
   }
 }

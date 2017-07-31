@@ -4,7 +4,8 @@ require('dotenv').config();
 
 const contentful = require('contentful');
 const contentfulManagement = require('contentful-management');
-const getRelations = require('./src/get-relations');
+
+const typesToModelMap = require('./src/types-to-model-map');
 const modelsToDot = require('./src/models-to-dot');
 
 const spaceId = process.env.CONTENTFUL_SPACE_ID;
@@ -42,19 +43,4 @@ async function runManagementImport () {
 
   const modelsMap = typesToModelMap(types);
   console.log(modelsToDot(modelsMap, true));
-}
-
-function typesToModelMap(types) {
-  const modelsMap = {};
-
-  types.items.forEach(type => {
-
-    modelsMap[type.name] = {
-      fields: type.fields,
-      relations: getRelations(type, types.items)
-    };
-
-  });
-
-  return modelsMap;
 }

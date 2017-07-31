@@ -1,0 +1,17 @@
+digraph obj {
+  node[shape=record];
+
+  PhotoGallery [label="{Photo Gallery |          | <title> Title|<slug> Slug|<author> Author|<coverImage> Cover Image|<description> Description|<images> Images|<tags> Tags|<date> Date|<location> Location}" shape=Mrecord];
+  Asset
+  Image [label="{Image |          | <title> Title|<photo> Photo|<imageCaption> Image caption|<imageCredits> Image credits|<categoryId> CategoryId}" shape=Mrecord];
+  Author [label="{Author |          | <name> Name|<twitterHandle> Twitter handle|<profilePhoto> Profile photo|<biography> Biography|<createdEntries> Created entries}" shape=Mrecord];
+  Category [label="{Category |          | <categoryId> Category Id|<categoryName> Category name}" shape=Mrecord];
+
+  PhotoGallery:author -> Author [dir=forward];
+  PhotoGallery:coverImage -> Asset [dir=forward];
+  PhotoGallery:images -> Image [dir=forward,label="0..*"];
+  Image:photo -> Asset [dir=forward];
+  Image:categoryId -> Category [dir=forward];
+  Author:profilePhoto -> Asset [dir=forward];
+  Author:createdEntries -> Image [dir=forward,label="0..*"];
+}

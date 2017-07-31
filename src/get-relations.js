@@ -1,4 +1,6 @@
-const {TYPE_LINK, LINK_TYPE_ASSET, LINK_TYPE_ENTRY} = require('./constants');
+const hasValues = require('./has-values');
+const { TYPE_LINK, LINK_TYPE_ASSET, LINK_TYPE_ENTRY } = require('./constants');
+
 
 function getRelations(contentType, allTypes) {
   const relations = {
@@ -6,8 +8,6 @@ function getRelations(contentType, allTypes) {
     one: [],
     many: []
   };
-
-  const hasValues = (val) => Array.isArray(val) && val.length > 0;
 
   const getTypeName = (searchType) => {
     return allTypes.filter(type => type.sys.id === searchType)[0].name;
