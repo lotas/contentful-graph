@@ -31,5 +31,13 @@
   ],
   "engines": {
     "node": ">=7.0.0"
+  },
+  "files": [
+    "bin",
+    "src",
+    "import.js"
+  ],
+  "bin": {
+    "contentful-graph": "./bin/contentful-graph"
   }
 }
