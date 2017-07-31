@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/lotas/contentful-graph.svg?branch=master)](https://travis-ci.org/lotas/contentful-graph)
+[![npm version](https://badge.fury.io/js/contentful-graph.svg)](https://badge.fury.io/js/contentful-graph)
 
 # contentful-graph
 Visual representation of contentful content models in form of graphs
