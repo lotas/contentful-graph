@@ -8,7 +8,7 @@ function modelsMapToDot(models, showEntityFields = false) {
     Object.keys(src).forEach(srcField => {
       src[srcField].forEach(relatedEntity => {
         const portPart = showEntityFields ? `:${srcField}` : '';
-        connections.push(`${displayName}${portPart} -> ${relatedEntity} [${props.join(',')}];`);
+        connections.push(`${displayName}${portPart} -> "${relatedEntity}" [${props.join(',')}];`);
       });
     });
   };
@@ -22,7 +22,7 @@ function modelsMapToDot(models, showEntityFields = false) {
     );
 
     if (showEntityFields) {
-      objects[displayName] = `${displayName} [label="{${modelName} |          | ${fields.join('|')}}" shape=Mrecord];`;
+      objects[displayName] = `${displayName} [label="{${modelName} (${displayName}) |          | ${fields.join('|')}}" shape=Mrecord];`;
     } else {
       objects[displayName] = `${displayName};`;
     }
