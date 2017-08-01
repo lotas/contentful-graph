@@ -10,7 +10,8 @@ function getRelations(contentType, allTypes) {
   };
 
   const getTypeName = (searchType) => {
-    return allTypes.filter(type => type.sys.id === searchType)[0].name;
+    const result = allTypes.filter(type => type.sys.id === searchType);
+    return `${result[0].name}\n(${searchType})`;
   };
 
   const addRelation = (relType, fieldId, linkType, validations) => {
@@ -36,6 +37,7 @@ function getRelations(contentType, allTypes) {
       addRelation('one', field.id, field.linkType, field.validations);
     } else if (field.items && field.items.type === TYPE_LINK) {
       const { type, linkType, validations } = field.items;
+      debugger;
       addRelation('many', field.id, linkType, validations);
     }
   });
