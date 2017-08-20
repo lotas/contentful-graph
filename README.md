@@ -32,6 +32,12 @@ Or locally
 
 `npm i --save-dev contentful-graph`
 
+# Running without installation
+
+Import script can be executed with the help of [npx](https://www.npmjs.com/package/npx)
+
+`npx contentul-graph`
+
 # Running import
 
 There are several ways of running the import:
@@ -59,6 +65,15 @@ or simply in command-line:
 `CONTENTFUL_SPACE_ID=123 CONTENTFUL_MANAGEMENT_TOKEN=token ./bin/contentful-graph`
 
 
+## Command-line options
+
+`--help` (`-h`) Displays usage information
+
+`--dev` (`-d`)  Includes developer information (model Id's and field Id's)
+
+`--hide-fields` (`-n`) Do not include fields information, only entities
+
+
 ## Api version
 
 Package exposes following functions:
@@ -75,7 +90,7 @@ Will import content types from contentful using distributions api
 
 Will enrich existing content types with mapping information (one-to-one, one-to-many)
 
-`modelsMapToDot(modelsMap: Object, showEntityFields: Boolean): String`
+`modelsMapToDot(modelsMap: Object, {hideEntityFields: Boolean, dev: Boolean}): String`
 
 Will create dot graph definition out of the model map
 
@@ -94,7 +109,7 @@ const contentTypes = await convertApi.getContentTypesFromDistributionApi(spaceId
 const modelsMap = convertApi.contentTypesToModelMap(contentTypes);
 
 // generate dot string that can be passed to graphviz
-const dotStr = convertApi.modelsMapToDot(modelsMap, true);
+const dotStr = convertApi.modelsMapToDot(modelsMap, {});
 ```
 
 # Generating graphs

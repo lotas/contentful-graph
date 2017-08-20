@@ -18,7 +18,8 @@
   "dependencies": {
     "contentful": "^4.3.0",
     "contentful-management": "^3.7.1",
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
     "mocha": "^3.4.2"

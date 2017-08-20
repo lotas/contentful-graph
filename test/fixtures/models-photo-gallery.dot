@@ -7,11 +7,11 @@ digraph obj {
   "Author" [label="{Author |          | <name> Name|<twitterHandle> Twitter handle|<profilePhoto> Profile photo|<biography> Biography|<createdEntries> Created entries}" shape=Mrecord];
   "Category" [label="{Category |          | <categoryId> Category Id|<categoryName> Category name}" shape=Mrecord];
 
-  "PhotoGallery:author" -> "Author" [dir=forward];
-  "PhotoGallery:coverImage" -> "Asset" [dir=forward];
-  "PhotoGallery:images" -> "Image" [dir=forward,label="0..*"];
-  "Image:photo" -> "Asset" [dir=forward];
-  "Image:categoryId" -> "Category" [dir=forward];
-  "Author:profilePhoto" -> "Asset" [dir=forward];
-  "Author:createdEntries" -> "Image" [dir=forward,label="0..*"];
+  PhotoGallery:author -> "Author" [dir=forward];
+  PhotoGallery:coverImage -> "Asset" [dir=forward];
+  PhotoGallery:images -> "Image" [dir=forward,label="0..*"];
+  Image:photo -> "Asset" [dir=forward];
+  Image:categoryId -> "Category" [dir=forward];
+  Author:profilePhoto -> "Asset" [dir=forward];
+  Author:createdEntries -> "Image" [dir=forward,label="0..*"];
 }

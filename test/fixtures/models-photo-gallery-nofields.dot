@@ -7,11 +7,11 @@ digraph obj {
   "Author";
   "Category";
 
-  "PhotoGallery" -> "Author" [dir=forward];
-  "PhotoGallery" -> "Asset" [dir=forward];
-  "PhotoGallery" -> "Image" [dir=forward,label="0..*"];
-  "Image" -> "Asset" [dir=forward];
-  "Image" -> "Category" [dir=forward];
-  "Author" -> "Asset" [dir=forward];
-  "Author" -> "Image" [dir=forward,label="0..*"];
+  PhotoGallery -> "Author" [dir=forward];
+  PhotoGallery -> "Asset" [dir=forward];
+  PhotoGallery -> "Image" [dir=forward,label="0..*"];
+  Image -> "Asset" [dir=forward];
+  Image -> "Category" [dir=forward];
+  Author -> "Asset" [dir=forward];
+  Author -> "Image" [dir=forward,label="0..*"];
 }
