@@ -8,7 +8,7 @@ function modelsMapToDot(models, showEntityFields = false) {
     Object.keys(src).forEach(srcField => {
       src[srcField].forEach(relatedEntity => {
         const portPart = showEntityFields ? `:${srcField}` : '';
-        connections.push(`"${displayName}${portPart}" -> "${relatedEntity}" [${props.join(',')}];`);
+        connections.push(`${displayName}${portPart} -> "${relatedEntity}" [${props.join(',')}];`);
       });
     });
   };
