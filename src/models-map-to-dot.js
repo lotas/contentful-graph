@@ -8,7 +8,7 @@ function modelsMapToDot(models, showEntityFields = false) {
     Object.keys(src).forEach(srcField => {
       src[srcField].forEach(relatedEntity => {
         const portPart = showEntityFields ? `:${srcField}` : '';
-        connections.push(`${displayName}${portPart} -> ${relatedEntity} [${props.join(',')}];`);
+        connections.push(`"${displayName}${portPart}" -> "${relatedEntity}" [${props.join(',')}];`);
       });
     });
   };
@@ -22,14 +22,14 @@ function modelsMapToDot(models, showEntityFields = false) {
     );
 
     if (showEntityFields) {
-      objects[displayName] = `${displayName} [label="{${modelName} |          | ${fields.join('|')}}" shape=Mrecord];`;
+      objects[displayName] = `"${displayName}" [label="{${modelName} |          | ${fields.join('|')}}" shape=Mrecord];`;
     } else {
-      objects[displayName] = `${displayName};`;
+      objects[displayName] = `"${displayName}";`;
     }
 
     const rels = model.relations;
     if (rels._hasAssets) {
-      objects[LINK_TYPE_ASSET] = `${LINK_TYPE_ASSET};`;
+      objects[LINK_TYPE_ASSET] = `"${LINK_TYPE_ASSET}";`;
     }
 
     mapRelations(displayName, rels.one, ['dir=forward']);
