@@ -1,17 +1,17 @@
 digraph obj {
   node[shape=record];
 
-  "PhotoGallery";
+  "Photo Gallery";
   "Asset";
   "Image";
   "Author";
   "Category";
 
-  PhotoGallery -> "Author" [dir=forward];
-  PhotoGallery -> "Asset" [dir=forward];
-  PhotoGallery -> "Image" [dir=forward,label="0..*"];
-  Image -> "Asset" [dir=forward];
-  Image -> "Category" [dir=forward];
-  Author -> "Asset" [dir=forward];
-  Author -> "Image" [dir=forward,label="0..*"];
+  "Photo Gallery" -> "Author" [dir=forward];
+  "Photo Gallery" -> "Asset" [dir=forward];
+  "Photo Gallery" -> "Image" [dir=forward,label="0..*"];
+  "Image" -> "Asset" [dir=forward];
+  "Image" -> "Category" [dir=forward];
+  "Author" -> "Asset" [dir=forward];
+  "Author" -> "Image" [dir=forward,label="0..*"];
 }

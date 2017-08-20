@@ -14,8 +14,8 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
   const mapRelations = (displayName, src, props) => {
     Object.keys(src).forEach(srcField => {
       src[srcField].forEach(relatedEntity => {
-        const portPart = hideEntityFields ? '' : `:${srcField}`;
-        connections.push(`${displayName}${portPart} -> "${relatedEntity}" [${props.join(',')}];`);
+        const portPart = hideEntityFields ? '' : `:"${srcField}"`;
+        connections.push(`"${displayName}"${portPart} -> "${relatedEntity}" [${props.join(',')}];`);
       });
     });
   };
@@ -25,14 +25,13 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
 
   Object.keys(models).forEach(modelName => {
     const model = models[modelName];
-    const displayName = modelName.replace(/\W/g, '');
 
     const fields = model.fields.map(dev ? fieldMapDev : fieldMap);
 
     if (hideEntityFields) {
-      objects[displayName] = `"${displayName}";`;
+      objects[modelName] = `"${modelName}";`;
     } else {
-      objects[displayName] = `"${displayName}" [label="{${dev ? `[${model.sys.id}] ${modelName}` : modelName} |          | ${fields.join('|')}}" shape=Mrecord];`;
+      objects[modelName] = `"${modelName}" [label="{${dev ? `[${model.sys.id}] ${modelName}` : modelName} |          | ${fields.join('|')}}" shape=Mrecord];`;
     }
 
     const rels = model.relations;
@@ -40,8 +39,8 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
       objects[LINK_TYPE_ASSET] = `"${LINK_TYPE_ASSET}";`;
     }
 
-    mapRelations(displayName, rels.one, ['dir=forward']);
-    mapRelations(displayName, rels.many, ['dir=forward', 'label="0..*"']);
+    mapRelations(modelName, rels.one, ['dir=forward']);
+    mapRelations(modelName, rels.many, ['dir=forward', 'label="0..*"']);
   });
 
   const dot = `

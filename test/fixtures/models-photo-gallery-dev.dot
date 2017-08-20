@@ -1,17 +1,17 @@
 digraph obj {
   node[shape=record];
 
- "PhotoGallery" [label="{[7leLzv8hW06amGmke86y8G] Photo Gallery |          | <title> [title] title|<slug> [slug] slug|<author> [author] author|<coverImage> [coverImage] coverImage|<description> [description] description|<images> [images] images|<tags> [tags] tags|<date> [date] date|<location> [location] location}" shape=Mrecord];
+ "Photo Gallery" [label="{[7leLzv8hW06amGmke86y8G] Photo Gallery |          | <title> [title] title|<slug> [slug] slug|<author> [author] author|<coverImage> [coverImage] coverImage|<description> [description] description|<images> [images] images|<tags> [tags] tags|<date> [date] date|<location> [location] location}" shape=Mrecord];
  "Asset";
  "Image" [label="{[1xYw5JsIecuGE68mmGMg20] Image |          | <title> [title] title|<photo> [photo] photo|<imageCaption> [imageCaption] imageCaption|<imageCredits> [imageCredits] imageCredits|<categoryId> [categoryId] categoryId}" shape=Mrecord];
  "Author" [label="{[38nK0gXXIccQ2IEosyAg6C] Author |          | <name> [name] name|<twitterHandle> [twitterHandle] twitterHandle|<profilePhoto> [profilePhoto] profilePhoto|<biography> [biography] biography|<createdEntries> [createdEntries] createdEntries}" shape=Mrecord];
  "Category" [label="{[category] Category |          | <categoryId> [categoryId] categoryId|<categoryName> [categoryName] categoryName}" shape=Mrecord];
 
-  PhotoGallery:author -> "Author" [dir=forward];
-  PhotoGallery:coverImage -> "Asset" [dir=forward];
-  PhotoGallery:images -> "Image" [dir=forward,label="0..*"];
-  Image:photo -> "Asset" [dir=forward];
-  Image:categoryId -> "Category" [dir=forward];
-  Author:profilePhoto -> "Asset" [dir=forward];
-  Author:createdEntries -> "Image" [dir=forward,label="0..*"];
+  "Photo Gallery":"author" -> "Author" [dir=forward];
+  "Photo Gallery":"coverImage" -> "Asset" [dir=forward];
+  "Photo Gallery":"images" -> "Image" [dir=forward,label="0..*"];
+  "Image":"photo" -> "Asset" [dir=forward];
+  "Image":"categoryId" -> "Category" [dir=forward];
+  "Author":"profilePhoto" -> "Asset" [dir=forward];
+  "Author":"createdEntries" -> "Image" [dir=forward,label="0..*"];
 }
