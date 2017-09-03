@@ -5,8 +5,8 @@ const { TYPE_LINK, LINK_TYPE_ASSET, LINK_TYPE_ENTRY } = require('./constants');
 function getRelations(contentType, allTypes) {
   const relations = {
     _hasAssets: false,
-    one: [],
-    many: []
+    one: {},
+    many: {}
   };
 
   const getTypeName = (searchType) => {

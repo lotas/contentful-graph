@@ -9,8 +9,8 @@ describe('getRelations', function () {
     };
     const expected = {
       _hasAssets: false,
-      one: [],
-      many: []
+      one: {},
+      many: {}
     }
 
     assert.deepEqual(getRelations(data), expected, 'Invalid structure')
