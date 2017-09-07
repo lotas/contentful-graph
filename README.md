@@ -73,6 +73,18 @@ or simply in command-line:
 
 `--hide-fields` (`-n`) Do not include fields information, only entities
 
+## Web version
+
+You can run it locally or host it on any server using [contentful-graph-web](https://github.com/lotas/contentful-graph-web)
+
+```
+docker run -it --rm -p 3000:3000 lotas/contentful-graph-web
+# or checkout project locally and
+make BUILD && make RUN
+# or if you have graphviz in your system simply
+npm run dev
+```
+
 
 ## Api version
 
