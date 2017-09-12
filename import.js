@@ -21,7 +21,7 @@ Running with management token:
 Available options:
   --help (-h)          Display this help
   --dev (-d)           Include developer information - field Id's and entity Id's
-  --hide-fields (-h)   Hide entity fields information, show only entity names and relationships
+  --no-fields (-n)     Hide entity fields information, show only entity names and relationships
 `;
 
 
