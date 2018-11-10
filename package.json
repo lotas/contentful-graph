@@ -17,16 +17,16 @@
   },
   "license": "ISC",
   "dependencies": {
-    "contentful": "^5.0.5",
-    "contentful-management": "^4.1.2",
-    "dotenv": "^4.0.0",
+    "contentful": "^7.0.5",
+    "contentful-management": "^5.4.0",
+    "dotenv": "^6.1.0",
     "minimist": "^1.2.0"
   },
   "devDependencies": {
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "mocha": "^5.0.0"
+    "mocha": "^5.2.0"
   },
   "keywords": [
     "contentful",
