@@ -1,7 +1,6 @@
 const hasValues = require('./has-values');
 const { TYPE_LINK, LINK_TYPE_ASSET, LINK_TYPE_ENTRY } = require('./constants');
 
-
 function getRelations(contentType, allTypes) {
   const relations = {
     _hasAssets: false,
@@ -10,7 +9,8 @@ function getRelations(contentType, allTypes) {
   };
 
   const getTypeName = (searchType) => {
-    return allTypes.filter(type => type.sys.id === searchType)[0].name;
+    const model = allTypes.filter(type => type.sys.id === searchType).pop();
+    return model ? model.name : `[ Unknown type: ${searchType} ]`;
   };
 
   const addRelation = (relType, fieldId, linkType, validations) => {

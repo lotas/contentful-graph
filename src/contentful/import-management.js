@@ -1,5 +1,3 @@
-'use strict';
-
 const contentfulManagement = require('contentful-management');
 
 /**
@@ -10,7 +8,7 @@ const contentfulManagement = require('contentful-management');
  * @param {String} managementToken
  * @returns {Object} content types definitions
  */
-async function getContentTypesFromManagementApi (spaceId, managementToken ) {
+async function getContentTypesFromManagementApi(spaceId, managementToken) {
   const client = contentfulManagement.createClient({ accessToken: managementToken });
 
   const space = await client.getSpace(spaceId);

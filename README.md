@@ -41,6 +41,7 @@ Import script can be executed with the help of [npx](https://www.npmjs.com/packa
 # Running import
 
 There are several ways of running the import:
+
 1. running CLI `bin/contentful-graph` command
 2. import API and invoking functions programmatically
 
@@ -54,7 +55,7 @@ Token may come in two flavors: Delivery token or Management token
 
 When running the command line version, make sure you export following variables:
 
-```
+```sh
 CONTENTFUL_SPACE_ID= spaceId
 CONTENTFUL_TOKEN= either deliveryToken
 CONTENTFUL_MANAGEMENT_TOKEN= or management token
@@ -64,7 +65,6 @@ or simply in command-line:
 
 `CONTENTFUL_SPACE_ID=123 CONTENTFUL_MANAGEMENT_TOKEN=token ./bin/contentful-graph`
 
-
 ## Command-line options
 
 `--help` (`-h`) Displays usage information
@@ -73,18 +73,25 @@ or simply in command-line:
 
 `--hide-fields` (`-n`) Do not include fields information, only entities
 
+## Reading from local file
+
+It is possible to run import against local file with exported model defintions:
+
+```sh
+./bin/contentful-graph ./my-contentful-model.json
+```
+
 ## Web version
 
 You can run it locally or host it on any server using [contentful-graph-web](https://github.com/lotas/contentful-graph-web)
 
-```
+```sh
 docker run -it --rm -p 3000:3000 lotas/contentful-graph-web
 # or checkout project locally and
 make BUILD && make RUN
 # or if you have graphviz in your system simply
 npm run dev
 ```
-
 
 ## Api version
 
@@ -106,10 +113,9 @@ Will enrich existing content types with mapping information (one-to-one, one-to-
 
 Will create dot graph definition out of the model map
 
-
 You can use them as follows:
 
-```
+```javascript
 const convertApi = require('contentful-graph');
 
 // either with managementToken
@@ -128,7 +134,7 @@ const dotStr = convertApi.modelsMapToDot(modelsMap, {});
 
 After you would run the import, you should have something like this:
 
-```
+```dot
 digraph obj {
   node[shape=record];
 
@@ -150,13 +156,12 @@ digraph obj {
 
 To render this to image or PDF, pipe it to the `dot` command:
 
-```
+```sh
 ./import.js | dot -Tpng > model.png
 ./import.js | dot -Tpdf > model.pdf
 ```
 
 Where `./import` is the script that produces `dot` output
-
 
 ## Links
 

@@ -1,5 +1,3 @@
-'use strict';
-
 const contentful = require('contentful');
 
 /**
@@ -10,7 +8,7 @@ const contentful = require('contentful');
  * @param {String} apiToken
  * @returns {Object} content types definitions
  */
-async function getContentTypesFromDistributionApi (spaceId, apiToken) {
+async function getContentTypesFromDistributionApi(spaceId, apiToken) {
   const client = contentful.createClient({ accessToken: apiToken, space: spaceId });
   const types = await client.getContentTypes();
 
