@@ -10,6 +10,7 @@ const convertApi = require('./src/index');
 const spaceId = process.env.CONTENTFUL_SPACE_ID;
 const apiToken = process.env.CONTENTFUL_TOKEN;
 const managementToken = process.env.CONTENTFUL_MANAGEMENT_TOKEN;
+const environmentId = process.env.CONTENTFUL_ENVIRONMENT_ID || 'master';
 
 const cmd = process.argv[1].split('/').pop();
 const usageHelp = `
@@ -19,6 +20,9 @@ Running with distribution token:
 
 Running with management token:
   CONTENTFUL_MANAGEMENT_TOKEN=xxx CONTENTFUL_SPACE_ID=yyy ${cmd}
+
+Running in different environment:
+  CONTENTFUL_ENVIRONMENT_ID=xxx CONTENTFUL_MANAGEMENT_TOKEN=xxx CONTENTFUL_SPACE_ID=yyy ${cmd}
 
 Importing from local json file:
   ${cmd} ./path/to/model.json
@@ -35,20 +39,20 @@ if (argv.help || argv.h) {
 }
 
 try {
-  run(spaceId, managementToken, apiToken);
+  run(spaceId, managementToken, apiToken, environmentId);
 } catch (err) {
   console.warn(err);
 }
 
-async function run(spaceId, managementToken, apiToken) {
+async function run(spaceId, managementToken, apiToken, env) {
   let contentTypes;
 
   if (argv._.length === 1) {
     contentTypes = JSON.parse(fs.readFileSync(argv._[0], 'utf8'));
   } else if (managementToken) {
-    contentTypes = await convertApi.getContentTypesFromManagementApi(spaceId, managementToken);
+    contentTypes = await convertApi.getContentTypesFromManagementApi(spaceId, managementToken, env);
   } else if (apiToken) {
-    contentTypes = await convertApi.getContentTypesFromDistributionApi(spaceId, apiToken);
+    contentTypes = await convertApi.getContentTypesFromDistributionApi(spaceId, apiToken, env);
   } else {
     console.log(usageHelp);
     return false;
