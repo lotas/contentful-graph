@@ -59,11 +59,12 @@ When running the command line version, make sure you export following variables:
 CONTENTFUL_SPACE_ID= spaceId
 CONTENTFUL_TOKEN= either deliveryToken
 CONTENTFUL_MANAGEMENT_TOKEN= or management token
+CONTENTFUL_ENVIRONMENT_ID= environment id
 ```
 
 or simply in command-line:
 
-`CONTENTFUL_SPACE_ID=123 CONTENTFUL_MANAGEMENT_TOKEN=token ./bin/contentful-graph`
+`CONTENTFUL_ENVIRONMENT_ID=master CONTENTFUL_SPACE_ID=123 CONTENTFUL_MANAGEMENT_TOKEN=token ./bin/contentful-graph`
 
 ## Command-line options
 
@@ -97,11 +98,11 @@ npm run dev
 
 Package exposes following functions:
 
-`getContentTypesFromManagementApi(spaceId: string, managementToken: string): Promise<Object>`
+`getContentTypesFromManagementApi(spaceId: string, managementToken: string, environment: string): Promise<Object>`
 
 Will import content types from contentful using management api
 
-`getContentTypesFromDistributionApi(spaceId: string, apiToken: string): Promise<Object>`
+`getContentTypesFromDistributionApi(spaceId: string, apiToken: string, environment: string): Promise<Object>`
 
 Will import content types from contentful using distributions api
 
