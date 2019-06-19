@@ -11,13 +11,12 @@ const getRelations = require('./get-relations');
 function contentTypesToModelMap(types) {
   const modelsMap = {};
 
-  types.items.forEach(type => {
+  types.items.forEach((type) => {
     modelsMap[type.name] = {
       fields: type.fields,
       relations: getRelations(type, types.items),
-      sys: type.sys
+      sys: type.sys,
     };
-
   });
 
   return modelsMap;
