@@ -38,21 +38,17 @@ if (argv.help || argv.h) {
   process.exit(0);
 }
 
-try {
-  run(spaceId, managementToken, apiToken, environmentId);
-} catch (err) {
-  console.warn(err);
-}
-
-async function run(spaceId, managementToken, apiToken, env) {
+async function run() {
   let contentTypes;
 
   if (argv._.length === 1) {
     contentTypes = JSON.parse(fs.readFileSync(argv._[0], 'utf8'));
   } else if (managementToken) {
-    contentTypes = await convertApi.getContentTypesFromManagementApi(spaceId, managementToken, env);
+    contentTypes = await convertApi
+      .getContentTypesFromManagementApi(spaceId, managementToken, environmentId);
   } else if (apiToken) {
-    contentTypes = await convertApi.getContentTypesFromDistributionApi(spaceId, apiToken, env);
+    contentTypes = await convertApi
+      .getContentTypesFromDistributionApi(spaceId, apiToken, environmentId);
   } else {
     console.log(usageHelp);
     return false;
@@ -67,4 +63,11 @@ async function run(spaceId, managementToken, apiToken, env) {
   const dotStr = convertApi.modelsMapToDot(modelsMap, options);
 
   console.log(dotStr);
+  return dotStr;
+}
+
+try {
+  run();
+} catch (err) {
+  console.warn(err);
 }

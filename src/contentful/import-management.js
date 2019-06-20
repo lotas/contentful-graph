@@ -10,10 +10,10 @@ const contentfulManagement = require('contentful-management');
  * @returns {Object} content types definitions
  */
 async function getContentTypesFromManagementApi(spaceId, managementToken, environment) {
-  const client = contentfulManagement.createClient({ accessToken: managementToken, environment });
-
+  const client = contentfulManagement.createClient({ accessToken: managementToken });
   const space = await client.getSpace(spaceId);
-  const types = await space.getContentTypes();
+  const env = await space.getEnvironment(environment);
+  const types = await env.getContentTypes();
 
   return types;
 }

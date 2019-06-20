@@ -1,4 +1,8 @@
-const {TYPE_LINK, LINK_TYPE_ASSET, LINK_TYPE_ENTRY} = require('./constants');
+const {
+  // TYPE_LINK,
+  LINK_TYPE_ASSET,
+  // LINK_TYPE_ENTRY
+} = require('./constants');
 
 /**
  * Create dot representation of entities
@@ -12,18 +16,18 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
   const connections = [];
 
   const mapRelations = (displayName, src, props) => {
-    Object.keys(src).forEach(srcField => {
-      src[srcField].forEach(relatedEntity => {
+    Object.keys(src).forEach((srcField) => {
+      src[srcField].forEach((relatedEntity) => {
         const portPart = hideEntityFields ? '' : `:"${srcField}"`;
         connections.push(`"${displayName}"${portPart} -> "${relatedEntity}" [${props.join(',')}];`);
       });
     });
   };
 
-  const fieldMap = (field) => `<${field.id}> ${field.name}`;
-  const fieldMapDev = (field) => `<${field.id}> [${field.id}] ${field.id}`;
+  const fieldMap = field => `<${field.id}> ${field.name}`;
+  const fieldMapDev = field => `<${field.id}> [${field.id}] ${field.id}`;
 
-  Object.keys(models).forEach(modelName => {
+  Object.keys(models).forEach((modelName) => {
     const model = models[modelName];
 
     const fields = model.fields.map(dev ? fieldMapDev : fieldMap);
@@ -31,10 +35,11 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
     if (hideEntityFields) {
       objects[modelName] = `"${modelName}";`;
     } else {
-      objects[modelName] = `"${modelName}" [label="{${dev ? `[${model.sys.id}] ${modelName}` : modelName} |          | ${fields.join('|')}}" shape=Mrecord];`;
+      objects[modelName] = `"${modelName}" [label="{${dev ? `[${model.sys.id}] ${modelName}` : modelName} |          | ${fields.join('|').replace(/"/g, "'")}}" shape=Mrecord];`;
     }
 
     const rels = model.relations;
+    // eslint-disable-next-line no-underscore-dangle
     if (rels._hasAssets) {
       objects[LINK_TYPE_ASSET] = `"${LINK_TYPE_ASSET}";`;
     }
@@ -47,9 +52,9 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
 digraph obj {
   node[shape=record];
 
-  ${Object.values(objects).join("\n  ")}
+  ${Object.values(objects).join('\n  ')}
 
-  ${connections.join("\n  ")}
+  ${connections.join('\n  ')}
 }
 `;
 
