@@ -7,7 +7,8 @@
     "test": "mocha",
     "lint": "eslint src/**/*.js"
   },
-  "contributors": [{
+  "contributors": [
+    {
       "name:": "Yaraslau Kurmyza",
       "email": "lotask@gmail.com"
     },
