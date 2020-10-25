@@ -1,3 +1,4 @@
+
 const hasValues = require('./has-values');
 const {
   TYPE_LINK, TYPE_RICH_TEXT, LINK_TYPE_ASSET, LINK_TYPE_ENTRY, RICH_TEXT_ENTRY_LINK_TYPES,
@@ -10,7 +11,7 @@ function getRelations(contentType, allTypes) {
     many: {},
   };
 
-  const allTypesSysId = allTypes.map(typeObj => typeObj.sys.id);
+  const allTypesSysId = allTypes ? allTypes.map(typeObj => typeObj.sys.id): [];
 
   const getTypeName = (searchType) => {
     const model = allTypes.filter(type => type.sys.id === searchType).pop();
