@@ -6,12 +6,18 @@ digraph obj {
   "Image" [label="{Image |          | <title> Title|<photo> Photo|<imageCaption> Image caption|<imageCredits> Image credits|<categoryId> CategoryId}" shape=Mrecord];
   "Author" [label="{Author |          | <name> Name|<twitterHandle> Twitter handle|<profilePhoto> Profile photo|<biography> Biography|<createdEntries> Created entries}" shape=Mrecord];
   "Category" [label="{Category |          | <categoryId> Category Id|<categoryName> Category name}" shape=Mrecord];
-
+  edge [color="#e6194B"];
   "Photo Gallery":"author" -> "Author" [dir=forward];
+  edge [color="#3cb44b"];
   "Photo Gallery":"coverImage" -> "Asset" [dir=forward];
+  edge [color="#e6194B"];
   "Photo Gallery":"images" -> "Image" [dir=forward,label="0..*"];
+  edge [color="#e6194B"];
   "Image":"photo" -> "Asset" [dir=forward];
+  edge [color="#3cb44b"];
   "Image":"categoryId" -> "Category" [dir=forward];
+  edge [color="#e6194B"];
   "Author":"profilePhoto" -> "Asset" [dir=forward];
+  edge [color="#e6194B"];
   "Author":"createdEntries" -> "Image" [dir=forward,label="0..*"];
 }

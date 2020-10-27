@@ -6,12 +6,18 @@ digraph obj {
   "Image";
   "Author";
   "Category";
-
+  edge [color="#e6194B"];
   "Photo Gallery" -> "Author" [dir=forward];
+  edge [color="#3cb44b"];
   "Photo Gallery" -> "Asset" [dir=forward];
+  edge [color="#e6194B"];
   "Photo Gallery" -> "Image" [dir=forward,label="0..*"];
+  edge [color="#e6194B"];
   "Image" -> "Asset" [dir=forward];
+  edge [color="#3cb44b"];
   "Image" -> "Category" [dir=forward];
+  edge [color="#e6194B"];
   "Author" -> "Asset" [dir=forward];
+  edge [color="#e6194B"];
   "Author" -> "Image" [dir=forward,label="0..*"];
 }
