@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# Jetbrains Tools config folder
+.idea
