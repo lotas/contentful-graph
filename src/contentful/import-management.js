@@ -18,5 +18,4 @@ async function getContentTypesFromManagementApi(spaceId, managementToken, enviro
   return types;
 }
 
-
 module.exports = getContentTypesFromManagementApi;
