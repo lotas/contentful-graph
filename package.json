@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "mocha",
-    "lint": "eslint src/**/*.js"
+    "lint": "eslint src/**/*.js",
+    "start": "./import.js"
   },
   "contributors": [
     {
@@ -30,16 +31,16 @@
   },
   "license": "ISC",
   "dependencies": {
-    "contentful": "^7.6.0",
-    "contentful-management": "^5.7.2",
-    "dotenv": "^8.0.0",
-    "minimist": "^1.2.0"
+    "contentful": "^7.14.14",
+    "contentful-management": "^7.1.0",
+    "dotenv": "^8.2.0",
+    "minimist": "^1.2.5"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.17.3",
-    "mocha": "^6.1.4"
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.2.1"
   },
   "keywords": [
     "contentful",
@@ -48,7 +49,8 @@
     "content model dependency"
   ],
   "engines": {
-    "node": ">=7.0.0"
+    "node": ">=14.0.0",
+    "npm": ">=6.14.0"
   },
   "files": [
     "bin",
