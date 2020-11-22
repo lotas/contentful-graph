@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 
 require('dotenv').config();
 
@@ -56,7 +57,7 @@ async function run() {
 
   const options = {
     hideEntityFields: argv.n || argv['no-fields'],
-    dev: argv.dev || argv.d
+    dev: argv.dev || argv.d,
   };
 
   const modelsMap = convertApi.contentTypesToModelMap(contentTypes);
