@@ -15,7 +15,7 @@
             "id": "jxpgsakrn9ub"
           }
         },
-        "id": "7leLzv8hW06amGmke86y8G",
+        "id": "photoGallery",
         "type": "ContentType",
         "createdAt": "2017-06-03T22:57:33.113Z",
         "updatedAt": "2017-06-03T22:57:33.585Z",
@@ -79,7 +79,7 @@
           "validations": [
             {
               "linkContentType": [
-                "38nK0gXXIccQ2IEosyAg6C"
+                "author"
               ]
             }
           ],
@@ -126,7 +126,7 @@
             "validations": [
               {
                 "linkContentType": [
-                  "1xYw5JsIecuGE68mmGMg20"
+                  "image"
                 ]
               }
             ],
@@ -178,7 +178,7 @@
             "id": "jxpgsakrn9ub"
           }
         },
-        "id": "1xYw5JsIecuGE68mmGMg20",
+        "id": "image",
         "type": "ContentType",
         "createdAt": "2017-06-03T22:57:32.995Z",
         "updatedAt": "2017-06-06T18:43:03.770Z",
@@ -286,7 +286,7 @@
             "id": "jxpgsakrn9ub"
           }
         },
-        "id": "38nK0gXXIccQ2IEosyAg6C",
+        "id": "author",
         "type": "ContentType",
         "createdAt": "2017-06-03T22:57:33.094Z",
         "updatedAt": "2017-06-03T22:57:33.609Z",
@@ -380,7 +380,7 @@
             "validations": [
               {
                 "linkContentType": [
-                  "1xYw5JsIecuGE68mmGMg20"
+                  "image"
                 ]
               }
             ],
