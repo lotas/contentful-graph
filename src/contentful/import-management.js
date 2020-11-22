@@ -13,9 +13,7 @@ async function getContentTypesFromManagementApi(spaceId, managementToken, enviro
   const client = contentfulManagement.createClient({ accessToken: managementToken });
   const space = await client.getSpace(spaceId);
   const env = await space.getEnvironment(environment);
-  const types = await env.getContentTypes();
-
-  return types;
+  return env.getContentTypes();
 }
 
 module.exports = getContentTypesFromManagementApi;

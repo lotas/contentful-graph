@@ -11,10 +11,7 @@ const contentful = require('contentful');
  */
 async function getContentTypesFromDistributionApi(spaceId, apiToken, environment) {
   const client = contentful.createClient({ accessToken: apiToken, space: spaceId, environment });
-  const space = await client.getSpace(spaceId);
-  const env = await space.getEnvironment(environment);
-  const types = await env.getContentTypes();
-  return types;
+  return client.getContentTypes();
 }
 
 module.exports = getContentTypesFromDistributionApi;
