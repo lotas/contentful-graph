@@ -1,4 +1,3 @@
-
 const hasValues = require('./has-values');
 const {
   TYPE_LINK, TYPE_RICH_TEXT, LINK_TYPE_ASSET, LINK_TYPE_ENTRY, RICH_TEXT_ENTRY_LINK_TYPES,
@@ -11,11 +10,11 @@ function getRelations(contentType, allTypes) {
     many: {},
   };
 
-  const allTypesSysId = allTypes ? allTypes.map(typeObj => typeObj.sys.id) : [];
+  const allTypesSysId = allTypes ? allTypes.map((typeObj) => typeObj.sys.id) : [];
 
-  const getTypeName = (searchType) => {
-    const model = allTypes.filter(type => type.sys.id === searchType).pop();
-    return model ? model.name : `[ Unknown type: ${searchType} ]`;
+  const getTypeId = (searchType) => {
+    const model = allTypes.filter((type) => type.sys.id === searchType).pop();
+    return model ? model.sys.id : `[ Unknown type: ${searchType} ]`;
   };
 
   const addRelation = (relType, fieldId, linkType, validations) => {
@@ -30,7 +29,7 @@ function getRelations(contentType, allTypes) {
       relations[relType][fieldId] = relations[relType][fieldId].concat(
         validations.reduce((arr, validation) => {
           if (hasValues(validation.linkContentType)) {
-            return arr.concat(validation.linkContentType.map(getTypeName));
+            return arr.concat(validation.linkContentType.map(getTypeId));
           } if (typeof validation.linkContentType === 'string') {
             return [validation.linkContentType];
           }
@@ -40,8 +39,8 @@ function getRelations(contentType, allTypes) {
     }
   };
   const checkRichTextValidationAndAddRelations = (fieldId, richTextValidations) => {
-    const nodeTypesEditorConfig = richTextValidations.filter(validationObj => typeof validationObj.enabledNodeTypes !== 'undefined')[0];
-    const nodesRestrictionConfig = richTextValidations.filter(validationObj => typeof validationObj.nodes !== 'undefined')[0];
+    const nodeTypesEditorConfig = richTextValidations.filter((validationObj) => typeof validationObj.enabledNodeTypes !== 'undefined')[0];
+    const nodesRestrictionConfig = richTextValidations.filter((validationObj) => typeof validationObj.nodes !== 'undefined')[0];
     /**
      *
      * @param {string} entryLinkType
@@ -52,7 +51,7 @@ function getRelations(contentType, allTypes) {
       if (typeof entryLinkTypeRestrictionsArray === 'undefined') {
         return undefined;
       }
-      const restrictionConfig = entryLinkTypeRestrictionsArray.filter(obj => Object.keys(obj).includes('linkContentType'))[0];
+      const restrictionConfig = entryLinkTypeRestrictionsArray.filter((obj) => Object.keys(obj).includes('linkContentType'))[0];
       if (typeof restrictionConfig !== 'undefined') {
         return restrictionConfig.linkContentType;
       }
@@ -66,10 +65,9 @@ function getRelations(contentType, allTypes) {
       return;
     }
     const doesEditorConfigRestrictAnyField = typeof nodeTypesEditorConfig !== 'undefined' && hasValues(nodeTypesEditorConfig.enabledNodeTypes);
-    const assetLinkAllowed = !doesEditorConfigRestrictAnyField || nodeTypesEditorConfig.enabledNodeTypes.filter(it => it.includes('asset')).length > 0;
-    const entryLinkAllowed = !doesEditorConfigRestrictAnyField || nodeTypesEditorConfig.enabledNodeTypes.filter(it => it.includes('entry')).length > 0;
-    const entryLinkTypes = doesEditorConfigRestrictAnyField ? nodeTypesEditorConfig.enabledNodeTypes.filter(it => it.includes('entry')) : RICH_TEXT_ENTRY_LINK_TYPES;
-
+    const assetLinkAllowed = !doesEditorConfigRestrictAnyField || nodeTypesEditorConfig.enabledNodeTypes.filter((it) => it.includes('asset')).length > 0;
+    const entryLinkAllowed = !doesEditorConfigRestrictAnyField || nodeTypesEditorConfig.enabledNodeTypes.filter((it) => it.includes('entry')).length > 0;
+    const entryLinkTypes = doesEditorConfigRestrictAnyField ? nodeTypesEditorConfig.enabledNodeTypes.filter((it) => it.includes('entry')) : RICH_TEXT_ENTRY_LINK_TYPES;
 
     if (assetLinkAllowed) {
       addRelation('many', fieldId, LINK_TYPE_ASSET, []);
@@ -85,10 +83,10 @@ function getRelations(contentType, allTypes) {
           return getContentRestrictionList;
         },
       ).reduce((prev, current) => {
-        current.forEach(nodeRevKey => prev.add(nodeRevKey));
+        current.forEach((nodeRevKey) => prev.add(nodeRevKey));
         return prev;
       }, new Set())
-        .forEach(linkedEntry => linkedEntriesAsArray.push(linkedEntry));
+        .forEach((linkedEntry) => linkedEntriesAsArray.push(linkedEntry));
       addRelation('many', fieldId, LINK_TYPE_ENTRY, [{ linkContentType: linkedEntriesAsArray }]);
     }
   };

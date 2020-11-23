@@ -12,7 +12,8 @@ function contentTypesToModelMap(types) {
   const modelsMap = {};
 
   types.items.forEach((type) => {
-    modelsMap[type.name] = {
+    modelsMap[type.sys.id] = {
+      name: type.name,
       fields: type.fields,
       relations: getRelations(type, types.items),
       sys: type.sys,

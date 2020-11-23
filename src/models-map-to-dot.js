@@ -29,18 +29,19 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
     });
   };
 
-  const fieldMap = field => `<${field.id}> ${field.name}`;
-  const fieldMapDev = field => `<${field.id}> [${field.id}] ${field.id}`;
+  const fieldMap = (field) => `<${field.id}> ${field.name}`;
+  const fieldMapDev = (field) => `<${field.id}> [${field.id}] ${field.name}`;
 
-  Object.keys(models).forEach((modelName) => {
-    const model = models[modelName];
+  Object.keys(models).forEach((modelsSysId) => {
+    const model = models[modelsSysId];
+    const modelName = model.name;
 
     const fields = model.fields.map(dev ? fieldMapDev : fieldMap);
 
     if (hideEntityFields) {
-      objects[modelName] = `"${modelName}";`;
+      objects[modelsSysId] = `"${modelsSysId}";`;
     } else {
-      objects[modelName] = `"${modelName}" [label="{${
+      objects[modelsSysId] = `"${modelsSysId}" [label="{${
         dev ? `[${model.sys.id}] ${modelName}` : modelName
       } |          | ${fields.join('|').replace(/"/g, "'")}}" shape=Mrecord];`;
     }
@@ -51,8 +52,8 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
       objects[LINK_TYPE_ASSET] = `"${LINK_TYPE_ASSET}";`;
     }
 
-    mapRelations(modelName, rels.one, ['dir=forward']);
-    mapRelations(modelName, rels.many, ['dir=forward', 'label="0..*"']);
+    mapRelations(modelsSysId, rels.one, ['dir=forward']);
+    mapRelations(modelsSysId, rels.many, ['dir=forward', 'label="0..*"']);
   });
 
   const dot = `
