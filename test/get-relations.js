@@ -62,7 +62,7 @@ describe('getRelations', () => {
       _hasAssets: true,
       one: {},
       many: {
-        enableEverythingRichText: ['Asset', 'foreign Model', 'Model with wildcard richtext'],
+        enableEverythingRichText: ['Asset', 'foreignModel', 'modelWithWildcardRichText'],
       },
     };
     assert.deepStrictEqual(getRelations(contentType, allItems), expected, 'Does not link to all types');
@@ -227,7 +227,7 @@ describe('getRelations', () => {
       _hasAssets: false,
       one: {},
       many: {
-        richText: ['foreign Model', 'Model with richtext'],
+        richText: ['foreignModel', 'modelWithRichText'],
       },
     };
     assert.deepStrictEqual(getRelations(contentType, allItems), expected, 'Does not link to assets or link to entries');
@@ -289,7 +289,7 @@ describe('getRelations', () => {
       _hasAssets: false,
       one: {},
       many: {
-        richText: ['foreign Model'],
+        richText: ['foreignModel'],
       },
     };
     assert.deepStrictEqual(getRelations(contentType, allItems), expected, 'Does not only link to foreignModel');
