@@ -16,25 +16,26 @@ const colors = [
  * @returns
  */
 function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
+  const sanitizeNamesForLabelInDot = (nameToSanitize) => nameToSanitize.replace(/([<>\\|])/g, '\\$&');
   const objects = {};
   const connections = [];
 
-  const mapRelations = (displayName, src, props) => {
+  const mapRelations = (modelSysId, src, props) => {
     Object.keys(src).forEach((srcField, index) => {
       src[srcField].forEach((relatedEntity) => {
         const color = colors[index % colors.length];
         const portPart = hideEntityFields ? '' : `:"${srcField}"`;
-        connections.push(`edge [color="${color}"];\n  "${displayName}"${portPart} -> "${relatedEntity}" [${props.join(',')}];`);
+        connections.push(`edge [color="${color}"];\n  "${modelSysId}"${portPart} -> "${relatedEntity}" [${props.join(',')}];`);
       });
     });
   };
 
-  const fieldMap = (field) => `<${field.id}> ${field.name}`;
-  const fieldMapDev = (field) => `<${field.id}> [${field.id}] ${field.name}`;
+  const fieldMap = (field) => `<${field.id}> ${sanitizeNamesForLabelInDot(field.name)}`;
+  const fieldMapDev = (field) => `<${field.id}> [${field.id}] ${sanitizeNamesForLabelInDot(field.name)}`;
 
   Object.keys(models).forEach((modelsSysId) => {
     const model = models[modelsSysId];
-    const modelName = model.name;
+    const modelName = sanitizeNamesForLabelInDot(model.name);
 
     const fields = model.fields.map(dev ? fieldMapDev : fieldMap);
 
@@ -56,17 +57,16 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
     mapRelations(modelsSysId, rels.many, ['dir=forward', 'label="0..*"']);
   });
 
-  const dot = `
+  return `
 digraph obj {
   node[shape=record];
 
-  ${Object.values(objects).join('\n  ')}
+  ${Object.values(objects)
+    .join('\n  ')}
 
   ${connections.join('\n  ')}
 }
 `;
-
-  return dot;
 }
 
 module.exports = modelsMapToDot;

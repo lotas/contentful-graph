@@ -1,0 +1,785 @@
+{
+  "sys": {
+    "type": "Array"
+  },
+  "total": 10,
+  "skip": 0,
+  "limit": 100,
+  "items": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qz0n5cdakyl9"
+          }
+        },
+        "id": "course",
+        "type": "ContentType",
+        "createdAt": "2017-11-08T16:06:18.939Z",
+        "updatedAt": "2017-12-14T17:29:17.052Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "revision": 3
+      },
+      "displayField": "title",
+      "name": "Course",
+      "description": "A series of lessons designed to teach sets of concepts that enable students to master Contentful.",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": true,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "image",
+          "name": "Image",
+          "type": "Link",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
+          "id": "shortDescription",
+          "name": "Short Description",
+          "type": "Symbol",
+          "localized": true,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "description",
+          "name": "Description",
+          "type": "Text",
+          "localized": true,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "duration",
+          "name": "Duration",
+          "type": "Integer",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "skillLevel",
+          "name": "Skill Level",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "lessons",
+          "name": "Lessons",
+          "type": "Array",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+              {
+                "linkContentType": [
+                  "lesson"
+                ]
+              }
+            ],
+            "linkType": "Entry"
+          }
+        },
+        {
+          "id": "categories",
+          "name": "Categories",
+          "type": "Array",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+              {
+                "linkContentType": [
+                  "category"
+                ]
+              }
+            ],
+            "linkType": "Entry"
+          }
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qz0n5cdakyl9"
+          }
+        },
+        "id": "layoutCopy",
+        "type": "ContentType",
+        "createdAt": "2017-11-08T16:06:17.774Z",
+        "updatedAt": "2017-12-14T17:27:24.185Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "revision": 3
+      },
+      "displayField": "title",
+      "name": "Layout > Copy",
+      "description": "A block of text with a headline and a call to action to be shown on the landing page.",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "headline",
+          "name": "Headline",
+          "type": "Symbol",
+          "localized": true,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "copy",
+          "name": "Copy",
+          "type": "Text",
+          "localized": true,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "ctaTitle",
+          "name": "CTA Title",
+          "type": "Symbol",
+          "localized": true,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "ctaLink",
+          "name": "CTA Link",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "visualStyle",
+          "name": "Visual Style",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qz0n5cdakyl9"
+          }
+        },
+        "id": "layoutHeroImage",
+        "type": "ContentType",
+        "createdAt": "2017-11-08T16:06:21.302Z",
+        "updatedAt": "2017-12-12T14:26:36.597Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "revision": 3
+      },
+      "displayField": "title",
+      "name": "Layout > Hero Image",
+      "description": "A hero image and header text.",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "headline",
+          "name": "Headline",
+          "type": "Symbol",
+          "localized": true,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "backgroundImage",
+          "name": "Background Image",
+          "type": "Link",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qz0n5cdakyl9"
+          }
+        },
+        "id": "lesson",
+        "type": "ContentType",
+        "createdAt": "2017-11-08T16:06:27.042Z",
+        "updatedAt": "2017-11-22T12:55:20.215Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "revision": 2
+      },
+      "displayField": "title",
+      "name": "Lesson",
+      "description": "A educational lesson, representing one section of a course.",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": true,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "modules",
+          "name": "Modules",
+          "type": "Array",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+              {
+                "linkContentType": [
+                  "lessonCodeSnippets",
+                  "lessonCopy",
+                  "lessonImage"
+                ]
+              }
+            ],
+            "linkType": "Entry"
+          }
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qz0n5cdakyl9"
+          }
+        },
+        "id": "category",
+        "type": "ContentType",
+        "createdAt": "2017-11-08T16:06:16.631Z",
+        "updatedAt": "2017-11-15T16:06:49.101Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "revision": 2
+      },
+      "displayField": "title",
+      "name": "Category",
+      "description": "Categories can be applied to Courses and Lessons. Assigning Multiple categories is also possible.",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": true,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qz0n5cdakyl9"
+          }
+        },
+        "id": "lessonCodeSnippets",
+        "type": "ContentType",
+        "createdAt": "2017-11-08T16:06:25.859Z",
+        "updatedAt": "2017-11-09T09:45:30.529Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "revision": 2
+      },
+      "displayField": "title",
+      "name": "Lesson > Code Snippets",
+      "description": "A code snippet module supporting all platforms to be used in a lesson.",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "curl",
+          "name": "cURL",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "dotNet",
+          "name": "DotNet",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "javascript",
+          "name": "Javascript",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "java",
+          "name": "Java",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "javaAndroid",
+          "name": "Java-android",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "php",
+          "name": "Php",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "python",
+          "name": "Python",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "ruby",
+          "name": "Ruby",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "swift",
+          "name": "Swift",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qz0n5cdakyl9"
+          }
+        },
+        "id": "layoutHighlightedCourse",
+        "type": "ContentType",
+        "createdAt": "2017-11-08T16:06:20.057Z",
+        "updatedAt": "2017-11-09T09:45:19.450Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "revision": 2
+      },
+      "displayField": "title",
+      "name": "Layout > Highlighted Course",
+      "description": "A curated selection of highlighted courses.",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "course",
+          "name": "Course",
+          "type": "Link",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Entry"
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qz0n5cdakyl9"
+          }
+        },
+        "id": "lessonCopy",
+        "type": "ContentType",
+        "createdAt": "2017-11-08T16:06:23.545Z",
+        "updatedAt": "2017-11-09T09:44:58.462Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "revision": 2
+      },
+      "displayField": "title",
+      "name": "Lesson > Copy",
+      "description": "A markdown module to be used in a lesson.",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "copy",
+          "name": "Copy",
+          "type": "Text",
+          "localized": true,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qz0n5cdakyl9"
+          }
+        },
+        "id": "layout",
+        "type": "ContentType",
+        "createdAt": "2017-11-08T16:06:24.618Z",
+        "updatedAt": "2017-11-08T16:06:24.618Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "revision": 1
+      },
+      "displayField": "title",
+      "name": "Layout",
+      "description": "A page consisting of freely configurable and rearrangeable content modules.",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "contentModules",
+          "name": "Content Modules",
+          "type": "Array",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+              {
+                "linkContentType": [
+                  "layoutCopy",
+                  "layoutHeroImage",
+                  "layoutHighlightedCourse"
+                ]
+              }
+            ],
+            "linkType": "Entry"
+          }
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qz0n5cdakyl9"
+          }
+        },
+        "id": "lessonImage",
+        "type": "ContentType",
+        "createdAt": "2017-11-08T16:06:22.406Z",
+        "updatedAt": "2017-11-08T16:06:22.406Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "revision": 1
+      },
+      "displayField": "title",
+      "name": "Lesson > Image",
+      "description": "An image to be used as a module in a lesson.",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "image",
+          "name": "Image",
+          "type": "Link",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
+          "id": "caption",
+          "name": "Caption",
+          "type": "Symbol",
+          "localized": true,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "qz0n5cdakyl9"
+          }
+        },
+        "id": "multiTestCharacters",
+        "type": "ContentType",
+        "createdAt": "2017-11-08T16:06:22.406Z",
+        "updatedAt": "2017-11-08T16:06:22.406Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "revision": 1
+      },
+      "displayField": "title",
+      "name": "Multi <> Test \\ | Character",
+      "description": "An image to be used as a module in a lesson.",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "image",
+          "name": "Image",
+          "type": "Link",
+          "localized": false,
+          "required": true,
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
+          "id": "caption",
+          "name": "Caption >\\|< chars",
+          "type": "Symbol",
+          "localized": true,
+          "required": false,
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    }
+  ]
+}

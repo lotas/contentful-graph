@@ -1,0 +1,33 @@
+
+digraph obj {
+  node[shape=record];
+
+  "course" [label="{Course |          | <title> Title|<slug> Slug|<image> Image|<shortDescription> Short Description|<description> Description|<duration> Duration|<skillLevel> Skill Level|<lessons> Lessons|<categories> Categories}" shape=Mrecord];
+  "layoutCopy" [label="{Layout \> Copy |          | <title> Title|<headline> Headline|<copy> Copy|<ctaTitle> CTA Title|<ctaLink> CTA Link|<visualStyle> Visual Style}" shape=Mrecord];
+  "layoutHeroImage" [label="{Layout \> Hero Image |          | <title> Title|<headline> Headline|<backgroundImage> Background Image}" shape=Mrecord];
+  "lesson" [label="{Lesson |          | <title> Title|<slug> Slug|<modules> Modules}" shape=Mrecord];
+  "category" [label="{Category |          | <title> Title|<slug> Slug}" shape=Mrecord];
+  "lessonCodeSnippets" [label="{Lesson \> Code Snippets |          | <title> Title|<curl> cURL|<dotNet> DotNet|<javascript> Javascript|<java> Java|<javaAndroid> Java-android|<php> Php|<python> Python|<ruby> Ruby|<swift> Swift}" shape=Mrecord];
+  "layoutHighlightedCourse" [label="{Layout \> Highlighted Course |          | <title> Title|<course> Course}" shape=Mrecord];
+  "lessonCopy" [label="{Lesson \> Copy |          | <title> Title|<copy> Copy}" shape=Mrecord];
+  "layout" [label="{Layout |          | <title> Title|<slug> Slug|<contentModules> Content Modules}" shape=Mrecord];
+  "lessonImage" [label="{Lesson \> Image |          | <title> Title|<image> Image|<caption> Caption}" shape=Mrecord];
+  "multiTestCharacters" [label="{Multi \<\> Test \\ \| Character |          | <title> Title|<image> Image|<caption> Caption \>\\\|\< chars}" shape=Mrecord];
+
+  edge [color="#e6194B"];
+  "course":"lessons" -> "lesson" [dir=forward,label="0..*"];
+  edge [color="#3cb44b"];
+  "course":"categories" -> "category" [dir=forward,label="0..*"];
+  edge [color="#e6194B"];
+  "lesson":"modules" -> "lessonCodeSnippets" [dir=forward,label="0..*"];
+  edge [color="#e6194B"];
+  "lesson":"modules" -> "lessonCopy" [dir=forward,label="0..*"];
+  edge [color="#e6194B"];
+  "lesson":"modules" -> "lessonImage" [dir=forward,label="0..*"];
+  edge [color="#e6194B"];
+  "layout":"contentModules" -> "layoutCopy" [dir=forward,label="0..*"];
+  edge [color="#e6194B"];
+  "layout":"contentModules" -> "layoutHeroImage" [dir=forward,label="0..*"];
+  edge [color="#e6194B"];
+  "layout":"contentModules" -> "layoutHighlightedCourse" [dir=forward,label="0..*"];
+}

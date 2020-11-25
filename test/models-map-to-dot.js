@@ -18,7 +18,7 @@ digraph obj {
 }
 `;
 
-    assert.equal(unspace(result), unspace(expected), 'Graph doesnt match');
+    assert.strictEqual(unspace(result), unspace(expected), 'Graph doesnt match');
   });
 
   it('should render sample graph with fields', () => {
@@ -30,7 +30,7 @@ digraph obj {
       hideEntityFields: false,
     });
 
-    assert.equal(unspace(result), unspace(expected), 'Graph doesnt match');
+    assert.strictEqual(unspace(result), unspace(expected), 'Graph doesnt match');
   });
 
   it('should render sample graph with dev information', () => {
@@ -43,7 +43,7 @@ digraph obj {
       dev: true,
     });
 
-    assert.equal(unspace(result), unspace(expected), 'Graph doesnt match');
+    assert.strictEqual(unspace(result), unspace(expected), 'Graph doesnt match');
   });
 
   it('should render sample graph without fields', () => {
@@ -55,6 +55,19 @@ digraph obj {
       hideEntityFields: true,
     });
 
-    assert.equal(unspace(result), unspace(expected), 'Graph doesnt match');
+    assert.strictEqual(unspace(result), unspace(expected), 'Graph doesnt match');
+  });
+
+  it('should escape <>\\| in the labels', () => {
+    const sampleModel = require('./fixtures/models-contentful-example-app.json');
+    const expected = fs.readFileSync(path.join(__dirname, './fixtures/models-contentful-example-app.dot'), 'utf-8');
+
+    const modelMap = convertApi.contentTypesToModelMap(sampleModel);
+    const result = convertApi.modelsMapToDot(modelMap, {
+      hideEntityFields: false,
+      dev: false,
+    });
+
+    assert.strictEqual(unspace(result), unspace(expected), 'Graph doesnt match');
   });
 });
