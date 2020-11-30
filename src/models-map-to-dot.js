@@ -16,31 +16,33 @@ const colors = [
  * @returns
  */
 function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
+  const sanitizeNamesForLabelInDot = (nameToSanitize) => nameToSanitize.replace(/([<>\\|])/g, '\\$&');
   const objects = {};
   const connections = [];
 
-  const mapRelations = (displayName, src, props) => {
+  const mapRelations = (modelSysId, src, props) => {
     Object.keys(src).forEach((srcField, index) => {
       src[srcField].forEach((relatedEntity) => {
         const color = colors[index % colors.length];
         const portPart = hideEntityFields ? '' : `:"${srcField}"`;
-        connections.push(`edge [color="${color}"];\n  "${displayName}"${portPart} -> "${relatedEntity}" [${props.join(',')}];`);
+        connections.push(`edge [color="${color}"];\n  "${modelSysId}"${portPart} -> "${relatedEntity}" [${props.join(',')}];`);
       });
     });
   };
 
-  const fieldMap = field => `<${field.id}> ${field.name}`;
-  const fieldMapDev = field => `<${field.id}> [${field.id}] ${field.id}`;
+  const fieldMap = (field) => `<${field.id}> ${sanitizeNamesForLabelInDot(field.name)}`;
+  const fieldMapDev = (field) => `<${field.id}> [${field.id}] ${sanitizeNamesForLabelInDot(field.name)}`;
 
-  Object.keys(models).forEach((modelName) => {
-    const model = models[modelName];
+  Object.keys(models).forEach((modelsSysId) => {
+    const model = models[modelsSysId];
+    const modelName = sanitizeNamesForLabelInDot(model.name);
 
     const fields = model.fields.map(dev ? fieldMapDev : fieldMap);
 
     if (hideEntityFields) {
-      objects[modelName] = `"${modelName}";`;
+      objects[modelsSysId] = `"${modelsSysId}";`;
     } else {
-      objects[modelName] = `"${modelName}" [label="{${
+      objects[modelsSysId] = `"${modelsSysId}" [label="{${
         dev ? `[${model.sys.id}] ${modelName}` : modelName
       } |          | ${fields.join('|').replace(/"/g, "'")}}" shape=Mrecord];`;
     }
@@ -51,21 +53,20 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
       objects[LINK_TYPE_ASSET] = `"${LINK_TYPE_ASSET}";`;
     }
 
-    mapRelations(modelName, rels.one, ['dir=forward']);
-    mapRelations(modelName, rels.many, ['dir=forward', 'label="0..*"']);
+    mapRelations(modelsSysId, rels.one, ['dir=forward']);
+    mapRelations(modelsSysId, rels.many, ['dir=forward', 'label="0..*"']);
   });
 
-  const dot = `
+  return `
 digraph obj {
   node[shape=record];
 
-  ${Object.values(objects).join('\n  ')}
+  ${Object.values(objects)
+    .join('\n  ')}
 
   ${connections.join('\n  ')}
 }
 `;
-
-  return dot;
 }
 
 module.exports = modelsMapToDot;
