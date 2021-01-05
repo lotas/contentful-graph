@@ -36,7 +36,7 @@ Or locally
 
 Import script can be executed with the help of [npx](https://www.npmjs.com/package/npx)
 
-`npx contentul-graph`
+`npx contentful-graph`
 
 # Running import
 
