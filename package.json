@@ -31,8 +31,8 @@
   },
   "license": "ISC",
   "dependencies": {
-    "contentful": "^7.14.14",
-    "contentful-management": "^7.1.0",
+    "contentful": "^8.1.7",
+    "contentful-management": "^7.5.1",
     "dotenv": "^8.2.0",
     "minimist": "^1.2.5"
   },
