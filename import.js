@@ -36,7 +36,8 @@ Available options:
 
 if (argv.help || argv.h) {
   console.info(usageHelp);
-  process.exit(0);
+  process.exitCode = 0;
+  return;
 }
 
 async function run() {

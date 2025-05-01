@@ -22,7 +22,7 @@ function getRelations(contentType, allTypes) {
       relations[relType][fieldId] = [];
     }
     if (linkType === LINK_TYPE_ASSET) {
-      // eslint-disable-next-line no-underscore-dangle
+       
       relations._hasAssets = true;
       relations[relType][fieldId].push(linkType);
     } else if (linkType === LINK_TYPE_ENTRY) {

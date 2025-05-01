@@ -1,9 +1,14 @@
-/* eslint-disable global-require */
+ 
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 
 const convertApi = require('../src/index');
+
+// Replace first windows line endings with linux (\r\n) then the Mac OS line endings (\r)
+// This is needed because to run the tests on all platforms and the line endings are different
+// on each platform.
+const normalizeLineEndings = str => str.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
 describe('modelsToDot', () => {
   const unspace = (str) => str.replace(/^\s+/mg, '');
@@ -23,14 +28,14 @@ digraph obj {
 
   it('should render sample graph with fields', () => {
     const sampleModel = require('./fixtures/models-photo-gallery.json');
-    const expected = fs.readFileSync(path.join(__dirname, './fixtures/models-photo-gallery.dot'), 'utf-8');
+    const expected = fs.readFileSync(path.join(__dirname, './fixtures/models-photo-gallery.dot'), {encoding: 'utf-8'});
 
     const modelMap = convertApi.contentTypesToModelMap(sampleModel);
     const result = convertApi.modelsMapToDot(modelMap, {
       hideEntityFields: false,
     });
 
-    assert.strictEqual(unspace(result), unspace(expected), 'Graph doesnt match');
+    assert.strictEqual(unspace(result), unspace(normalizeLineEndings(expected)), 'Graph doesnt match');
   });
 
   it('should render sample graph with dev information', () => {
@@ -43,7 +48,7 @@ digraph obj {
       dev: true,
     });
 
-    assert.strictEqual(unspace(result), unspace(expected), 'Graph doesnt match');
+    assert.strictEqual(unspace(result), unspace(normalizeLineEndings(expected)), 'Graph doesnt match');
   });
 
   it('should render sample graph without fields', () => {
@@ -55,7 +60,7 @@ digraph obj {
       hideEntityFields: true,
     });
 
-    assert.strictEqual(unspace(result), unspace(expected), 'Graph doesnt match');
+    assert.strictEqual(unspace(result), unspace(normalizeLineEndings(expected)), 'Graph doesnt match');
   });
 
   it('should escape <>\\| in the labels', () => {
@@ -68,6 +73,6 @@ digraph obj {
       dev: false,
     });
 
-    assert.strictEqual(unspace(result), unspace(expected), 'Graph doesnt match');
+    assert.strictEqual(unspace(result), unspace(normalizeLineEndings(expected)), 'Graph doesnt match');
   });
 });

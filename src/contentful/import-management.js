@@ -1,4 +1,9 @@
 const contentfulManagement = require('contentful-management');
+/**
+ *  @typedef {import('contentful-management').ContentType} ContentType
+ *  @typedef {import('contentful-management').CollectionProp} CollectionProp
+ *  @typedef {import('contentful-management').ContentTypeProps} ContentTypeProps
+ */
 
 /**
  * Run content types import through management api
@@ -7,13 +12,11 @@ const contentfulManagement = require('contentful-management');
  * @param {String} spaceId
  * @param {String} managementToken
  * @param {String} environment
- * @returns {Object} content types definitions
+ * @returns {Promise<CollectionProp<ContentTypeProps>>} content types definitions
  */
-async function getContentTypesFromManagementApi(spaceId, managementToken, environment) {
-  const client = contentfulManagement.createClient({ accessToken: managementToken });
-  const space = await client.getSpace(spaceId);
-  const env = await space.getEnvironment(environment);
-  return env.getContentTypes();
+function getContentTypesFromManagementApi(spaceId, managementToken, environment) {
+  const client = contentfulManagement.createClient({ accessToken: managementToken }, {type: "plain"});
+  return client.contentType.getMany({environmentId: environment, spaceId})
 }
 
 module.exports = getContentTypesFromManagementApi;
