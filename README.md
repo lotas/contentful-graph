@@ -66,6 +66,12 @@ or simply in command-line:
 
 `CONTENTFUL_ENVIRONMENT_ID=master CONTENTFUL_SPACE_ID=123 CONTENTFUL_MANAGEMENT_TOKEN=token ./bin/contentful-graph`
 
+### EU Hosting
+
+If your contentful space is hosted in EU (or potential any future other region), you need to set the environment variable `CONTENTFUL_HOST`
+
+Based on your usage (Management API or Delivery API), you need to adjust the contentful host accordingly.
+
 ## Command-line options
 
 `--help` (`-h`) Displays usage information

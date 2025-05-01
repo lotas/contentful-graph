@@ -9,10 +9,11 @@ const contentful = require('contentful');
  * @param {String} spaceId
  * @param {String} apiToken
  * @param {String} environment
+ * @param {String | undefined} host
  * @returns {Promise<ContentTypeCollection>} content types definitions
  */
-function getContentTypesFromDistributionApi(spaceId, apiToken, environment) {
-  const client = contentful.createClient({ accessToken: apiToken, space: spaceId, environment });
+function getContentTypesFromDistributionApi(spaceId, apiToken, environment, host) {
+  const client = contentful.createClient({ accessToken: apiToken, space: spaceId, environment, host });
   return client.getContentTypes();
 }
 
