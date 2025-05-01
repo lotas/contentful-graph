@@ -48,7 +48,7 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
     }
 
     const rels = model.relations;
-    // eslint-disable-next-line no-underscore-dangle
+     
     if (rels._hasAssets) {
       objects[LINK_TYPE_ASSET] = `"${LINK_TYPE_ASSET}";`;
     }

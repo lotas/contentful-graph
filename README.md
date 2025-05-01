@@ -20,7 +20,7 @@ If you plan to render the graph as image or PDF, make sure you have `graphviz` i
 
 ## node.js
 
-The library is using async/await functions, so you need the latest `7` or `8` versions.
+This library supports all LTS Versions of node.js. Current state: You need at least node version `20`.
 
 # Installation
 
@@ -96,7 +96,7 @@ npm run dev
 
 ## Api version
 
-Package exposes following functions:
+Package exposes the following functions:
 
 `getContentTypesFromManagementApi(spaceId: string, managementToken: string, environment: string): Promise<Object>`
 
@@ -112,7 +112,7 @@ Will enrich existing content types with mapping information (one-to-one, one-to-
 
 `modelsMapToDot(modelsMap: Object, {hideEntityFields: Boolean, dev: Boolean}): String`
 
-Will create dot graph definition out of the model map
+Will create a dot graph definition out of the model map
 
 You can use them as follows:
 
@@ -171,3 +171,10 @@ Where `./import` is the script that produces `dot` output
 [Contentful Delivery API](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-types)
 
 [GraphViz Fiddle](http://stamm-wilbrandt.de/GraphvizFiddle/)
+
+
+## FAQ
+
+### What is the difference between Delivery and Management API?
+
+The RichText configuration is not available in Delivery API. If you want to display links used in a RichText field, you need to use Management API.
