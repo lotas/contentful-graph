@@ -51,6 +51,19 @@ digraph obj {
     assert.strictEqual(unspace(result), unspace(normalizeLineEndings(expected)), 'Graph doesnt match');
   });
 
+  it('should render sample graph with dev information and without fields', () => {
+    const sampleModel = require('./fixtures/models-photo-gallery.json');
+    const expected = fs.readFileSync(path.join(__dirname, './fixtures/models-photo-gallery-nofields-dev.dot'), 'utf-8');
+
+    const modelMap = convertApi.contentTypesToModelMap(sampleModel);
+    const result = convertApi.modelsMapToDot(modelMap, {
+      hideEntityFields: true,
+      dev: true,
+    });
+
+    assert.strictEqual(unspace(result), unspace(normalizeLineEndings(expected)), 'Graph doesnt match');
+  });
+
   it('should render sample graph without fields', () => {
     const sampleModel = require('./fixtures/models-photo-gallery.json');
     const expected = fs.readFileSync(path.join(__dirname, './fixtures/models-photo-gallery-nofields.dot'), 'utf-8');
