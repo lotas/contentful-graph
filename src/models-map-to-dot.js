@@ -36,15 +36,13 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
   Object.keys(models).forEach((modelsSysId) => {
     const model = models[modelsSysId];
     const modelName = sanitizeNamesForLabelInDot(model.name);
-
+    const modelLabel = dev ? `[${model.sys.id}] ${modelName}` : modelName;
     const fields = model.fields.map(dev ? fieldMapDev : fieldMap);
 
     if (hideEntityFields) {
-      objects[modelsSysId] = `"${modelsSysId}";`;
+      objects[modelsSysId] = `"${modelsSysId}" [label="${modelLabel}"];`;
     } else {
-      objects[modelsSysId] = `"${modelsSysId}" [label="{${
-        dev ? `[${model.sys.id}] ${modelName}` : modelName
-      } |          | ${fields.join('|').replace(/"/g, "'")}}" shape=Mrecord];`;
+      objects[modelsSysId] = `"${modelsSysId}" [label="{${modelLabel} |          | ${fields.join('|').replace(/"/g, "'")}}" shape=Mrecord];`;
     }
 
     const rels = model.relations;

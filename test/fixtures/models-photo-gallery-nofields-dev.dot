@@ -1,11 +1,11 @@
 digraph obj {
   node[shape=record];
 
-  "photoGallery" [label="Photo Gallery"];
+  "photoGallery" [label="[photoGallery] Photo Gallery"];
   "Asset";
-  "image" [label="Image"];
-  "author" [label="Author"];
-  "category" [label="Category"];
+  "image" [label="[image] Image"];
+  "author" [label="[author] Author"];
+  "category" [label="[category] Category"];
   edge [color="#e6194B"];
   "photoGallery" -> "author" [dir=forward];
   edge [color="#3cb44b"];
