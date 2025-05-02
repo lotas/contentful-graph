@@ -29,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/lotas/contentful-graph/issues"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "contentful": "^11.5.18",
     "contentful-management": "^11.52.2",
