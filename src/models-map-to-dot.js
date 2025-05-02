@@ -36,7 +36,7 @@ function modelsMapToDot(models, { hideEntityFields, dev } = {}) {
   Object.keys(models).forEach((modelsSysId) => {
     const model = models[modelsSysId];
     const modelName = sanitizeNamesForLabelInDot(model.name);
-    const modelLabel = dev ? `[${model.sys.id}] ${modelName}` : modelName
+    const modelLabel = dev ? `[${model.sys.id}] ${modelName}` : modelName;
     const fields = model.fields.map(dev ? fieldMapDev : fieldMap);
 
     if (hideEntityFields) {
